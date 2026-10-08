@@ -50,23 +50,25 @@ def build_knowledge_base():
     # Validate expected policy-section coverage before retrieval is enabled.
     overall_validation, missing = validate_loaded_pdfs(files)
     validation_report = overall_validation.get("validation_report", {})
-    rows = []
     all_sections = []
     for pdf_path in files:
         # Extract labelled sections from each source document.
-        page_count, sections, section_missing = extract_pdf_sections(pdf_path)
-        rows.extend(sections)
+        _, sections, _ = extract_pdf_sections(pdf_path)
         all_sections.extend(sections)
-        if section_missing:
-            st.warning(f"{pdf_path.name}: missing sections {section_missing}")
-        if len(rows) >= 1 and len(rows) < 16:
-            st.warning("Expected 16 section IDs but fewer were detected; verification report is available below.")
 
     if overall_validation.get("actual_section_count", 0) < 16:
-        st.warning(f"Overall section validation: expected 16 IDs, found {overall_validation.get('actual_section_count', 0)}. Missing: {overall_validation.get('combined_missing_sections', [])}")
+        st.error(
+            "Knowledge base was not built because required policy sections are missing. "
+            f"Expected 16 IDs, found {overall_validation.get('actual_section_count', 0)}. "
+            f"Missing: {overall_validation.get('combined_missing_sections', [])}"
+        )
+        return False
 
     # Build the retrieval pipeline: chunks -> normalized vectors -> FAISS index.
     chunks = chunk_policy_sections(all_sections)
+    if not chunks:
+        st.error("Knowledge base was not built because no readable policy text was extracted from the PDFs.")
+        return False
     model = get_embedding_model()
     chunk_texts = [chunk["text"] for chunk in chunks]
     embeddings = embed_texts(model, chunk_texts)
