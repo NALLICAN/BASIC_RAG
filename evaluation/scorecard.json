@@ -1,0 +1,32 @@
+{
+  "development": {
+    "retrieval_evidence_recall": 1.0,
+    "faithfulness": 0.751,
+    "answer_correctness": 0.656,
+    "response_relevancy": 1.0,
+    "citation_supported_links": 0.875,
+    "citation_factual_claims": 0.875,
+    "safe_handling": 1.0,
+    "average_latency_seconds": 0.065
+  },
+  "final_test": {
+    "retrieval_evidence_recall": 1.0,
+    "faithfulness": 1.0,
+    "answer_correctness": 1.0,
+    "response_relevancy": 1.0,
+    "citation_supported_links": 1.0,
+    "citation_factual_claims": 1.0,
+    "safe_handling": 1.0,
+    "average_latency_seconds": 0.008
+  },
+  "challenge": {
+    "retrieval_evidence_recall": 1.0,
+    "faithfulness": 0.792,
+    "answer_correctness": 1.0,
+    "response_relevancy": 1.0,
+    "citation_supported_links": 0.5,
+    "citation_factual_claims": 0.5,
+    "safe_handling": 0.75,
+    "average_latency_seconds": 0.101
+  }
+}

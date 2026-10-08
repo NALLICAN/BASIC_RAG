@@ -1,0 +1,11 @@
+streamlit>=1.40.0
+pymupdf>=1.24.0
+sentence-transformers>=3.2.1
+torchvision
+faiss-cpu>=1.9.0
+numpy>=1.26.0
+pandas>=2.2.0
+scikit-learn>=1.5.0
+python-dotenv>=1.0.0
+langchain-text-splitters>=0.3.0
+openai>=1.58.1

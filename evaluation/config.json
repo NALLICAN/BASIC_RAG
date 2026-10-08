@@ -1,0 +1,15 @@
+{
+  "python_version": "3.12.4",
+  "streamlit_version": "1.65.0",
+  "pymupdf_version": "1.24.10",
+  "sentence_transformers_version": "6.1.0",
+  "faiss_version": "1.15.1",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_dimension": 384,
+  "llm_provider": "openai",
+  "llm_model": "gpt-4o-mini",
+  "chunk_size": 700,
+  "chunk_overlap": 100,
+  "top_k": 3,
+  "index_type": "IndexFlatIP"
+}
